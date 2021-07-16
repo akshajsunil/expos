@@ -1,0 +1,37 @@
+decl 
+  int GCD(int a, int b); 
+enddecl
+
+int GCD(int a,int b)
+{	
+decl
+	int ans,i;
+enddecl
+
+begin
+i=1;
+ans=1;
+	while(i<=a AND i<=b) do
+if(((a%i)==0) AND ((b%i)==0)) then
+ans=i;
+endif;
+i=i+1;
+endwhile;
+
+	return ans;
+end
+}
+
+int main()
+{
+decl
+    int temp,a,b,ans;
+enddecl
+begin
+    temp = exposcall ( "Read" , -1, a );
+    temp = exposcall ( "Read" , -1, b );
+    ans = GCD(a,b);
+    temp = exposcall ( "Write" , -2, ans );
+    return 0;
+end
+}

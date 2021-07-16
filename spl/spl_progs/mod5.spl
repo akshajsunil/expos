@@ -1,0 +1,35 @@
+alias pid R0;
+pid=[SYSTEM_STATUS_TABLE+1];
+multipush (BP);
+[PROCESS_TABLE + ( pid* 16) + 12]=SP%512;
+[PROCESS_TABLE + ( pid* 16) + 14]=PTBR;
+[PROCESS_TABLE + ( pid* 16) + 15]=PTLR;
+
+
+alias i R1;
+alias newPID R2;
+newPID=-1;
+i=pid+1;
+while(i<16) do
+if([PROCESS_TABLE + ( i* 16) + 4]==READY||[PROCESS_TABLE + ( i*16) + 4]==CREATED) then
+newPID=i;
+break;
+endif;
+i=i+1;
+endwhile;
+if(newPID==-1)then
+newPID=0;
+endif;
+SP=[PROCESS_TABLE + ( newPID* 16) + 11]*512+[PROCESS_TABLE + ( newPID* 16) + 12];
+PTBR=[PROCESS_TABLE + ( newPID* 16) + 14];
+PTLR=[PROCESS_TABLE + ( newPID* 16) + 15];
+[SYSTEM_STATUS_TABLE+1]=newPID;
+if([PROCESS_TABLE + ( newPID* 16) + 4]==CREATED) then
+SP=[PROCESS_TABLE + ( newPID* 16) + 13];
+[PROCESS_TABLE + ( newPID* 16) + 4]=RUNNING;
+[PROCESS_TABLE + ( newPID* 16) + 9]=0;
+ireturn;
+endif;
+[PROCESS_TABLE + ( newPID* 16) + 4]=RUNNING;
+multipop (BP);
+return;

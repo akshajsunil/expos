@@ -1,0 +1,12 @@
+load --module 1 ../stage20/mod1.xsm
+load --module 5 ../stage20/mod5.xsm
+load --module 7 ../stage20/mod7.xsm
+load --int=8 ../stage20/int8.xsm
+load --int=10 ../stage20/int10.xsm
+load --init ../stage20/fork.xsm
+load --idle ../stage20/idle.xsm
+
+load --exec $HOME/myexpos/expl/samples/odd.xsm
+load --exec $HOME/myexpos/expl/samples/even.xsm
+
+

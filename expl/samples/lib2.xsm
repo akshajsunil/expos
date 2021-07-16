@@ -1,0 +1,41 @@
+POP R0 //ip
+POP R1 //return
+POP R2 //arg3
+POP R3 //2
+POP R4 //1
+POP R5 //"Write"
+MOV R6,"Write"
+EQ R6,R5
+JZ R6,68
+MOV R6,-2
+EQ R6,R4
+JZ R6,68
+PUSH R0 //save ip
+MOV R5,5
+PUSH R5 //sys arg
+PUSH R4
+PUSH R3
+PUSH R2
+PUSH R1
+INT 7
+POP R1 //ret value
+POP R2
+POP R2
+POP R2
+POP R2
+POP R0 //ip
+PUSH R2 //restore stack 
+PUSH R2
+PUSH R2
+PUSH R2
+PUSH R1
+PUSH R0
+RET
+MOV R4,-1 //error not
+PUSH R2
+PUSH R2
+PUSH R2
+PUSH R2
+PUSH R4
+PUSH R0
+RET

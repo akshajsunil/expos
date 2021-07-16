@@ -1,0 +1,22 @@
+code to dump:
+dump --inodeusertable
+
+
+////////////////
+rm prime.xsm
+rm odd.xsm
+rm even.xsm
+
+///////////////////
+load --init $HOME/myexpos/expl/samples/even.xsm
+load --exec $HOME/myexpos/expl/samples/odd.xsm
+load --exec $HOME/myexpos/expl/samples/prime.xsm
+/////////////////
+
+
+load --module 4 $HOME/myexpos/stage15/module4_stage15.xsm
+load --module 0 $HOME/myexpos/stage15/module0_stage15.xsm
+load --int=7 $HOME/myexpos/stage15/stage15_int7.xsm
+load --int=timer $HOME/myexpos/stage15/timer_stage14.xsm
+load --init $HOME/myexpos/expl/samples/even.xsm
+load --module 7 $HOME/myexpos/stage15/boot7_module_stage15.xsm
